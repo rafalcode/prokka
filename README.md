@@ -1,6 +1,7 @@
 # Prokka: rapid prokaryotic genome annotation  
 
 Torsten Seemann (<torsten.seemann@gmail.com>) (@torstenseemann)
+mod rf: for some reason, the path setting is executed rather late ... have moved it up.
 
 ##Contents
 
