@@ -172,6 +172,16 @@ my %tools = (
 );  
 
 # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+# add our included binaries to the END of the PATH
+
+for my $dir ($BINDIR, "$BINDIR/../common", $FindBin::RealBin) {
+  if (-d $dir) {
+    msg("Appending to PATH: $dir");
+    $ENV{PATH} .= ":$dir";
+  }
+}
+
+# . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 # functions to check if tool is installed and correct version
 
 sub check_tool {
@@ -356,16 +366,6 @@ msg("Writing log to: $logfile");
 open LOG, '>', $logfile or err("Can't open logfile");
 
 msg("Command: @CMDLINE");
-
-# . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-# add our included binaries to the END of the PATH
-
-for my $dir ($BINDIR, "$BINDIR/../common", $FindBin::RealBin) {
-  if (-d $dir) {
-    msg("Appending to PATH: $dir");
-    $ENV{PATH} .= ":$dir";
-  }
-}
 
 # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 # now check the tools and make the adjustments
